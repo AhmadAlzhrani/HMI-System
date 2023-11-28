@@ -1,29 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import {FaPencilAlt} from 'react-icons/fa'
+import React, { useEffect, useState } from 'react';
+import { MdRamenDining } from "react-icons/md";
+import Steppers from './stpper';
 
 function App() {
-
-    // Requesting the ingredients data from the backend
-    const [backendData, setbackendData] = useState([{}])
-    useEffect(() => {
-        fetch('/data',{
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => setbackendData(data))
-    }, [])
-
-    // Sending the order code to the backend
-    const sendData = async () => {
-        const dataToSend = { key: '101010' };
-    
-        await fetch('/order', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json',},
-            body: JSON.stringify(dataToSend),
-        });
-    };
-
+    // later funcionality
     /*const SideBar = () =>{
         return(
             <div>
@@ -48,34 +28,100 @@ function App() {
         )
     }*/
 
-    return(
-        <div className='flex'>
-            <SideBar/>
-        </div>
+    // Requesting the ingredients data from the backend
+    const [backendData, setBackendData] = useState([{}]);
+    useEffect(() => {
+        fetch('/data', {
+            method: 'GET',
+        })
+            .then((response) => response.json())
+            .then((data) => setBackendData(data));
+    }, []);
 
-    )
+    // Sending the order code to the backend
+    const sendData = async () => {
+        const dataToSend = { key: '101010' };
+
+        await fetch('/order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataToSend),
+        });
+    };
+
+    return (
+        <>
+        <div className="">
+            <Steppers/>
+        </div>
+        </>
+    );
 }
 
 function CustomButton(props) {
-    return <button className='bg-orange-400 text-white font-medium px-4 py-1 rounded hover:bg-orange-500' onClick={props.onClick}>{props.text}</button>;
+    return (
+        <button
+            className="bg-orange-400 text-white font-medium px-4 py-1 rounded hover:bg-orange-500 disabled:bg-gray-400"
+            onClick={props.onClick}
+        >
+            {props.text}
+        </button>
+    );
 }
 
-function SideBar(){
-    return(
-        <div className='fixed top-0 left-0 h-screen w-16 m-0 flex flex-col bg-gray-600 text-white shadow-lg'>
-           <SideBarIcon icon={<FaPencilAlt size='30'/>}/>
+function SideBar() {
+    return (
+        <div className="fixed top-0 left-0 h-screen m-0 flex flex-col bg-gray-600 text-white shadow-lg w-80">
+            <SideBarIcon icon={<MdRamenDining size="30" />} />
         </div>
-
-    )
+    );
 }
 
-function SideBarIcon({icon}) {
-    return(
-        <div className='sidebar-icon'>
-            {icon}
+function SideBarIcon({ icon }) {
+    return <div className="sidebar-icon">{icon}</div>;
+}
+
+/*function VerticalStepper() {
+    const [activeStep, setActiveStep] = useState(0);
+
+    const handleNext = () => {
+        setActiveStep((prevStep) => prevStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevStep) => prevStep - 1);
+    };
+
+    return (
+        <div className="vertical-stepper">
+            <div className="stepper-header">
+                <h2>Vertical Stepper</h2>
+            </div>
+            <div className="stepper-content">
+                <div className={`step ${activeStep === 0 ? 'active' : ''}`}>
+                    <h3>Step 1</h3>
+                    <p>Step 1 content goes here</p>
+                </div>
+                <div className={`step ${activeStep === 1 ? 'active' : ''}`}>
+                    <h3>Step 2</h3>
+                    <p>Step 2 content goes here</p>
+                </div>
+                <div className={`step ${activeStep === 2 ? 'active' : ''} bg-gray-100`}>
+                    <h3>Step 3</h3>
+                    <p>Step 3 content goes here</p>
+                </div>
+            </div>
+            <div className="stepper-actions">
+                <button className="bg-orange-400 text-white font-medium px-4 py-1 rounded hover:bg-orange-500 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled={activeStep === 0} onClick={handleBack}>
+                    Back
+                </button>
+                <button className="bg-orange-400 text-white font-medium px-4 py-1 rounded hover:bg-orange-500 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled={activeStep === 2} onClick={handleNext}>
+                    Next
+                </button>
+            </div>
         </div>
-    )
-}
+    );
+}*/
 
 
 export default App;

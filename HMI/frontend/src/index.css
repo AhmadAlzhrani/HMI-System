@@ -4,6 +4,14 @@
 
 @layer components {
   .sidebar-icon {
-    @apply relative flex items-center justify-center w-10 h-10 mx-auto my-4 rounded-lg bg-green-500 ;
+    @apply relative flex items-center justify-center w-10 h-10 mx-auto my-4 rounded-lg bg-blue-900;
   }
+}
+
+.primary-button{
+  @apply bg-blue-900 text-white font-medium px-4 py-1 rounded hover:bg-blue-800 disabled:bg-gray-400 m-2;
+}
+
+.secondary-button{
+  @apply bg-gray-500 text-white font-medium px-4 py-1 rounded hover:bg-blue-800 disabled:bg-gray-400 m-2;
 }

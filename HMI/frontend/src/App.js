@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { MdRamenDining } from "react-icons/md";
-import Steppers from './stpper';
+import Steppers from "./stpper";
 
 function App() {
-    // later funcionality
-    /*const SideBar = () =>{
+  // later funcionality
+  /*const SideBar = () =>{
         return(
             <div>
                 <div className = 'logo'>
@@ -28,57 +28,57 @@ function App() {
         )
     }*/
 
-    // Requesting the ingredients data from the backend
-    const [backendData, setBackendData] = useState([{}]);
-    useEffect(() => {
-        fetch('/data', {
-            method: 'GET',
-        })
-            .then((response) => response.json())
-            .then((data) => setBackendData(data));
-    }, []);
+  // Requesting the ingredients data from the backend
+  const [backendData, setBackendData] = useState([{}]);
+  useEffect(() => {
+    fetch("/data", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => setBackendData(data));
+  }, []);
 
-    // Sending the order code to the backend
-    const sendData = async () => {
-        const dataToSend = { key: '101010' };
+  // Sending the order code to the backend
+  const sendData = async () => {
+    const dataToSend = { key: "101010" };
 
-        await fetch('/order', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataToSend),
-        });
-    };
+    await fetch("/order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dataToSend),
+    });
+  };
 
-    return (
-        <>
-        <div className="">
-            <Steppers/>
-        </div>
-        </>
-    );
+  return (
+    <>
+      <div className="">
+        <Steppers />
+      </div>
+    </>
+  );
 }
 
 function CustomButton(props) {
-    return (
-        <button
-            className="bg-orange-400 text-white font-medium px-4 py-1 rounded hover:bg-orange-500 disabled:bg-gray-400"
-            onClick={props.onClick}
-        >
-            {props.text}
-        </button>
-    );
+  return (
+    <button
+      className="bg-orange-400 text-white font-medium px-4 py-1 rounded hover:bg-orange-500 disabled:bg-gray-400"
+      onClick={props.onClick}
+    >
+      {props.text}
+    </button>
+  );
 }
 
 function SideBar() {
-    return (
-        <div className="fixed top-0 left-0 h-screen m-0 flex flex-col bg-gray-600 text-white shadow-lg w-80">
-            <SideBarIcon icon={<MdRamenDining size="30" />} />
-        </div>
-    );
+  return (
+    <div className="fixed top-0 left-0 h-screen m-0 flex flex-col bg-gray-600 text-white shadow-lg w-80">
+      <SideBarIcon icon={<MdRamenDining size="30" />} />
+    </div>
+  );
 }
 
 function SideBarIcon({ icon }) {
-    return <div className="sidebar-icon">{icon}</div>;
+  return <div className="sidebar-icon">{icon}</div>;
 }
 
 /*function VerticalStepper() {
@@ -122,6 +122,5 @@ function SideBarIcon({ icon }) {
         </div>
     );
 }*/
-
 
 export default App;

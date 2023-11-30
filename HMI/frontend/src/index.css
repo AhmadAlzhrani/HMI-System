@@ -9,7 +9,7 @@
 }
 
 .primary-button{
-  @apply bg-blue-900 text-white font-medium px-4 py-1 rounded hover:bg-blue-800 disabled:bg-gray-400 m-2;
+  @apply bg-blue-900 text-white font-semibold text-[20px] px-8 py-2 rounded hover:bg-blue-800 disabled:bg-gray-400 m-2;
 }
 
 .secondary-button{

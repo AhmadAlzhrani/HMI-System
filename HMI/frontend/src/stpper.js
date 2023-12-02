@@ -3,18 +3,24 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step'; 
 import StepLabel from '@material-ui/core/StepLabel'; 
 import StepContent from '@material-ui/core/StepContent'; 
-import r1 from './ramen.png'
-import r2 from './r.png'
-import r3 from './r2.jpg'
+import t1 from './t1.png'
+import t2 from './t2.png'
+import t3 from './t3.png'
+import s1 from './s1.png'
+import s2 from './s2.png'
+import s3 from './s3.png'
+import m1 from './m1.png'
+import m2 from './m2.png'
+import m3 from './m3.png'
 import { MdRamenDining } from "react-icons/md";
 
-var p1_images = [r1,r2,r3]
-var p2_images = [r2,r3,r1]
-var p3_images = [r3,r1,r2]
+var p1_images = [m1,m2,m3]
+var p2_images = [s1,s2,s3]
+var p3_images = [t1,t2,t3]
 
-var p1_names = ['Macaroni','Toppings','Sauce']
-var p2_names = ['Toppings','Sauce','Macaroni']
-var p3_names = ['Sauce','Macaroni','Toppings']
+var p1_names = ['Penne','Orecchitte','Spaghetti']
+var p2_names = ['Tomato Sauce','Pesto Sauce','Alfredo Sauce']
+var p3_names = ['Grilled Chicken','Beef','Vegetables']
 var discribtion = ['- Macaroni discribtion','- Toppings discribtion','- Sauce discribtion']
 var order = ['','','']
 var page = 0
@@ -24,10 +30,6 @@ const setPage = (index) => {
 }
 const setOrder = (index) => {
 	order[page] = index
-}
-
-function fff(){
-	alert("Order is: "+order+" page is: "+page+"")	
 }
 
 function imageList(pageImage, pageNames){
@@ -45,7 +47,6 @@ function imageList(pageImage, pageNames){
 						<img class=' object-center object-cover w-[150px] h-[150px] rounded-3xl border-2 border-black hover:border-blue-600'  onClick={() => { setOrder(2) }} src={pageImage[2]}  alt="Logo" />
 						<text className='bottom-0 px-4 py-3'>{pageNames[2]}</text>
 		</div>
-		<button onClick={fff}>fff</button>
 	</div>
 }
 
@@ -54,9 +55,9 @@ function getImage(step){
 		case 0:
 			return imageList(p1_images, p1_names);
 		case 1:
-			return imageList(p2_images, p2_names);
-		case 2:
 			return imageList(p3_images, p3_names);
+		case 2:
+			return imageList(p2_images, p2_names);
 		default:
 			return <div className='grid justify-items-center'>
 				<div>{<MdRamenDining size="100"/>}</div>

@@ -141,8 +141,8 @@ return (
 				</div>
 				<div className= {activeStep===3?' text-left text-2xl px-8': 'text-left px-8'} > {discribtion[activeStep]} </div>
 			</div>
-			<div className= {activeStep===3?'w-[119vh] h-[140px] content-end top-0': 'w-[119vh] h-[140px] space-x-60 content-end ' }>
-				<button className='primary-button' onClick={handleBack} disabled={activeStep === 0} style={{display:activeStep===3? 'none':''}}>
+			<div className= {activeStep===3?'w-[119vh] h-[140px] content-end top-0': 'w-[119vh] h-[140px] space-x-60' }>
+				<button className='primary-button' onClick={handleBack} disabled={activeStep === 0} style={{display:activeStep===3 || activeStep===0 ? 'none':''}}>
 					Back
 				</button>
 				<button className='primary-button' onClick={handleNext} disabled={activeStep===3} style={{display:activeStep===3? 'none':''}}>

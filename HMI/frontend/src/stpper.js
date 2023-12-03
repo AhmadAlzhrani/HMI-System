@@ -21,7 +21,7 @@ var p3_images = [t1,t2,t3]
 var p1_names = ['Penne','Orecchitte','Spaghetti']
 var p2_names = ['Tomato Sauce','Pesto Sauce','Alfredo Sauce']
 var p3_names = ['Grilled Chicken','Beef','Vegetables']
-var discribtion = ['- Macaroni discribtion','- Toppings discribtion','- Sauce discribtion']
+var discribtion = ['- Macaroni discribtion','- Toppings discribtion','- Sauce discribtion','COST']
 var order = ['','','']
 var page = 0
 
@@ -36,15 +36,15 @@ function imageList(pageImage, pageNames){
 
 	return <div className='flex space-x-10'>
 		<div className='w-[155] h-[155]'>
-						<img class=' object-center object-cover w-[150px] h-[150px] rounded-3xl border-2 border-black hover:border-blue-600' onClick={() => { setOrder(0) }} src={pageImage[0]}  alt="Logo" />
+						<img class=' object-center object-cover w-[150px] h-[150px] rounded-3xl border-2 border-black hover:border-blue-600 hover:border-4' onClick={() => { setOrder(0) }} src={pageImage[0]}  alt="Logo" />
 						<text className='bottom-0 px-4 py-3'>{pageNames[0]}</text>
 		</div>
 		<div className='w-[155] h-[155]'>
-						<img class=' object-center object-cover w-[150px] h-[150px] rounded-3xl border-2 border-black hover:border-blue-600' onClick={() => { setOrder(1) }} src={pageImage[1]}   alt="Logo" />
+						<img class=' object-center object-cover w-[150px] h-[150px] rounded-3xl border-2 border-black hover:border-blue-600 hover:border-4' onClick={() => { setOrder(1) }} src={pageImage[1]}   alt="Logo" />
 						<text className='bottom-0 px-4 py-3'>{pageNames[1]}</text>
 		</div>
 		<div className='w-[155] h-[155]'>
-						<img class=' object-center object-cover w-[150px] h-[150px] rounded-3xl border-2 border-black hover:border-blue-600'  onClick={() => { setOrder(2) }} src={pageImage[2]}  alt="Logo" />
+						<img class=' object-center object-cover w-[150px] h-[150px] rounded-3xl border-2 border-black hover:border-blue-600 hover:border-4'  onClick={() => { setOrder(2) }} src={pageImage[2]}  alt="Logo" />
 						<text className='bottom-0 px-4 py-3'>{pageNames[2]}</text>
 		</div>
 	</div>
@@ -61,7 +61,12 @@ function getImage(step){
 		default:
 			return <div className='grid justify-items-center'>
 				<div>{<MdRamenDining size="100"/>}</div>
-				<text className=' text-blue-600'>Please Press Order to Complete the Order</text>
+				<text className=' text-blue-600 text-left'>
+					<text className=' text-black text-center'>Your Order :</text>
+					<li>Macaroni: {p1_names[order[0]]}</li>
+					<li>Topping: {p3_names[order[1]]}</li>
+					<li>Sauce: {p2_names[order[2]]}</li>
+				</text>
 				</div>;
 	}
 }
@@ -119,13 +124,13 @@ return (
 			))} 
 			</Stepper> 
 			{activeStep === steps.length && ( 
-				<div className='text-center p-5 ' > 
-				<h1 className='p-5'> 
-					CLICK DOWN TO SET ORDER 
-				</h1> 
+				<div className='grid text-center p-5' >  
 				<button onClick={handleReset} className={' primary-button'}> 
-					Order 
+					Pay 
 				</button> 
+				<text className='p-5'> 
+					CLICK DOWN TO SET ORDER 
+				</text>
 				</div> 
 			)} 
 		</div>
@@ -134,15 +139,32 @@ return (
 				<div className='flex h-[400px] justify-center items-center border-2 m-4 rounded-md border-blue-100 shadow-md'>
 					{getImage(activeStep)}
 				</div>
-				<h1 className='text-left px-8'>{discribtion[activeStep]}</h1>
+				<div className= {activeStep===3?' text-left text-2xl px-8': 'text-left px-8'} > {discribtion[activeStep]} </div>
 			</div>
-			<div className='w-[119vh] h-[140px] space-x-60 content-end'>
-				<button className='primary-button' onClick={handleBack} disabled={activeStep === 0}>
+			<div className= {activeStep===3?'w-[119vh] h-[140px] content-end top-0': 'w-[119vh] h-[140px] space-x-60 content-end ' }>
+				<button className='primary-button' onClick={handleBack} disabled={activeStep === 0} style={{display:activeStep===3? 'none':''}}>
 					Back
 				</button>
-				<button className='primary-button' onClick={handleNext} disabled={activeStep===3}>
+				<button className='primary-button' onClick={handleNext} disabled={activeStep===3} style={{display:activeStep===3? 'none':''}}>
 					{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
 				</button>
+				<div className=' rounded-md text-left px-8 columns-2' style={{display:activeStep===3? '':'none'}}>
+					<div className='text-black columns:1'>
+						<h2 className='text-black '>{p1_names[order[0]]}</h2>
+						<h2 className='text-black '>{p2_names[order[1]]}</h2>
+						<h2 className='text-black '>{p3_names[order[2]]}</h2>
+						<line>__________________</line>
+						<h2 className='text-black '>Total</h2>
+					</div>
+					<div className='text-black columns:2'>
+						<h2 className='text-black '>- 5 SR</h2>
+						<h2 className='text-black '>- 3 SR</h2>
+						<h2 className='text-black '>- 2 SR</h2>
+						<line>__________________</line>
+						<h1 className='text-black '>- 10 SR</h1>
+
+					</div>
+				</div>
 			</div>
 		</div>
 	</div> 
